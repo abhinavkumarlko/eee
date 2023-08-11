@@ -1,0 +1,55 @@
+Deploying software to AWS cloud:
+
+
+
+>Create a public or private repo
+
+>Clone public repo to local computer
+
+>Add server.js file, public folder, package.json, and DockerFile to node js application folder locally copied.
+
+>Add .gitigore file to block bin,node_modules folder
+
+>Push code repo to github acc
+
+>Create AWS virtual server with Ubuntu OS, keypair file using AWS console.
+
+>Set up firewall using  security manager of virtual server with inbound rule all traffic, request to be accepted from anywhere
+
+>Update linux server using
+	sudo apt update
+
+>Clone public repository consisting of node js app to linux virtual server.
+
+>Install docker using command
+	sudo apt install docker.io
+
+>Install NodeJS using command
+	sudo apt install nodejs
+
+>Ensure Docker daemon process is running in the background
+	sudo systemctl status docker
+
+>Check the number of docker images installed in the virtual server.
+	sudo docker images
+
+>Check number of docker instances running with the help of docker services
+	sudo docker ps
+
+>Change directory to clones repo
+	cd localrepfolder
+
+>Use docker build command to create docker container image for node js application
+	sudo docker build -t knowitnodeapp .
+
+>Run docker instance using command
+	sudo docker run -d -p 8081:8081 knowitnodeapp 
+
+>Check number of docker container instances running in the virtual server and the command is 
+	sudo docker ps
+
+>Access website hosted by node js application running inside container with the help of docker engine to the remote server managed by AWS.
+	http://PublicIPs:8081
+
+>Terminate container instance running with the help of following command
+	sudo docker kill -f containerid

@@ -1,0 +1,83 @@
+LinQ
+
+
+namespace Linq
+{
+    public class Student
+    {
+        public int no;
+        public string name;
+        public int age;
+        public String language;
+
+
+    }
+
+    public class Myclass
+    {
+        public static void ain(string[] args)
+        {
+            List<Student> students = new List<Student>
+            {
+                new Student { no = 1,name="Nikhil",age=30,language="Eng"},
+                new Student { no = 1,name="Harshu",age=32,language="Hindi"},
+                new Student { no = 1,name="Himanshi",age=36,language="Marathi"}
+            };
+
+            var xx = from student in students select student;
+
+            foreach(var i in xx)
+            {
+                Console.WriteLine(i.no+" "+i.name+" "+i.age+" "+i.language);
+            }
+
+
+        }
+    }
+
+}
+
+
+
+
+ADO
+
+
+using MySqlConnector;
+
+namespace ConsoleApp1
+{
+    public class Program
+    {
+
+        static string constr = @"server=localhost;userid=root;password=12345;database=test";
+        public static void Main(string[] args)
+        {
+
+            DisplayCount();
+            
+
+
+        }
+
+
+        public static void DisplayCount()
+        {
+            using (MySqlConnection con = new MySqlConnection(constr))
+            {
+                con.Open();
+                using (MySqlCommand cmd = new MySqlCommand())
+                {
+
+                    cmd.Connection = con;
+                    cmd.CommandText = "Select count(*) from Book";
+
+                    var res = cmd.ExecuteScalar();
+                    Console.WriteLine("\n\nRecord Count : " + res);
+                    con.Close();
+                }
+
+            }
+        }
+    }
+}
